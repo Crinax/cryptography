@@ -1,3 +1,19 @@
+
 body {
   background-color: #1f2125;
+}
+
+button, [role="button"] {
+  cursor: pointer;
+}
+
+* {
+  --color__primary: #2d2f37;
+  --color__success: #006907;
+  --color__error: #891107;
+  --color__info: #226689;
+  --color__accent: #5034a2;
+  --text-color: #cecece;
+
+  color: var(--text-color);
 }
