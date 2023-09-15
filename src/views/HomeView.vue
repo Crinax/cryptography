@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import AppButton from '@/components/AppButton.vue';
+import { RouterLink } from 'vue-router';
+import { useAppSettinsStore } from '@/stores/app-settings';
+
+const appSettings = useAppSettinsStore();
 </script>
 
 <template>
   <main>
-    <AppButton>Hello, world!</AppButton>
+    <router-link v-if="appSettings.isDevMode" :to="{ name: 'components' }">Компоненты</router-link>
   </main>
 </template>
