@@ -68,7 +68,7 @@ const updateModelValue = (event: Event) => {
 
 <template>
   <div class="app-input">
-    <label v-if="slots.label" class="app-input__label" @click="focusOnInput">
+    <label v-if="slots.label" class="app-input__label">
       <slot name="label" />
     </label>
 
