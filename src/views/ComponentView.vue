@@ -2,14 +2,16 @@
 import { ref } from 'vue';
 import AppButton from '@/components/AppButton.vue';
 import AppText from '@/components/AppText.vue';
+import AppInput from '@/components/AppInput.vue';
 
 const textComponent = ref('');
+const inputText = ref('');
 const clickEvent = (text: string) => (textComponent.value = text);
 </script>
 
 <template>
   <div class="app-components simple-text">
-    <AppText>Текст: {{ textComponent }}</AppText>
+    <AppText>Default text: {{ textComponent }}</AppText>
   </div>
   <div class="app-components buttons">
     <AppButton kind="primary" @click="clickEvent('Primary button')">Primary button</AppButton>
@@ -24,6 +26,13 @@ const clickEvent = (text: string) => (textComponent.value = text);
     <AppButton kind="accent" @click="clickEvent('Accent button')" block>Accent button</AppButton>
     <AppButton kind="error" @click="clickEvent('Error button')" block>Error button</AppButton>
     <AppButton kind="info" @click="clickEvent('Info button')" block>Info button</AppButton>
+  </div>
+  <div class="app-components input">
+    <AppInput v-model="inputText" placeholder="Enter a text">
+      <template #label>
+        {{ inputText }}
+      </template>
+    </AppInput>
   </div>
 </template>
 

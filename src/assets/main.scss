@@ -13,12 +13,13 @@ button,
 
 * {
   --color__primary: #2d2f37;
+  --color__input: #18191d;
   --color__success: #006907;
   --color__error: #891107;
   --color__info: #226689;
   --color__accent: #5b38bf;
-  --text-color: #cecece;
+  --color__text: #cecece;
 
-  color: var(--text-color);
+  color: var(--color__text);
   box-sizing: border-box;
 }
