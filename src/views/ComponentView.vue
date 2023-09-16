@@ -11,26 +11,35 @@ const clickEvent = (text: string) => (textComponent.value = text);
 
 <template>
   <div class="app-components simple-text">
-    <AppText kind="primary">Default text: {{ textComponent }}</AppText>
-    <AppText kind="success">Success text: {{ textComponent }}</AppText>
-    <AppText kind="accent">Accent text: {{ textComponent }}</AppText>
-    <AppText kind="error">Error text: {{ textComponent }}</AppText>
-    <AppText kind="info">Info text: {{ textComponent }}</AppText>
+    <app-text kind="primary">Default text: {{ textComponent }}</app-text>
+    <app-text kind="success">Success text: {{ textComponent }}</app-text>
+    <app-text kind="accent">Accent text: {{ textComponent }}</app-text>
+    <app-text kind="error">Error text: {{ textComponent }}</app-text>
+    <app-text kind="info">Info text: {{ textComponent }}</app-text>
   </div>
+
   <div class="app-components buttons">
-    <AppButton kind="primary" @click="clickEvent('Primary button')">Primary button</AppButton>
-    <AppButton kind="success" @click="clickEvent('Success button')">Success button</AppButton>
-    <AppButton kind="accent" @click="clickEvent('Accent button')">Accent button</AppButton>
-    <AppButton kind="error" @click="clickEvent('Error button')">Error button</AppButton>
-    <AppButton kind="info" @click="clickEvent('Info button')">Info button</AppButton>
+    <app-button kind="primary" @click="clickEvent('Primary button')">Primary button</app-button>
+    <app-button kind="success" @click="clickEvent('Success button')">Success button</app-button>
+    <app-button kind="accent" @click="clickEvent('Accent button')">Accent button</app-button>
+    <app-button kind="error" @click="clickEvent('Error button')">Error button</app-button>
+    <app-button kind="info" @click="clickEvent('Info button')">Info button</app-button>
   </div>
+
   <div class="app-components buttons">
-    <AppButton kind="primary" @click="clickEvent('Primary button')" block>Primary button</AppButton>
-    <AppButton kind="success" @click="clickEvent('Success button')" block>Success button</AppButton>
-    <AppButton kind="accent" @click="clickEvent('Accent button')" block>Accent button</AppButton>
-    <AppButton kind="error" @click="clickEvent('Error button')" block>Error button</AppButton>
-    <AppButton kind="info" @click="clickEvent('Info button')" block>Info button</AppButton>
+    <app-button kind="primary" @click="clickEvent('Primary button')" block>
+      Primary button
+    </app-button>
+    <app-button kind="success" @click="clickEvent('Success button')" block>
+      Success button
+    </app-button>
+    <app-button kind="accent" @click="clickEvent('Accent button')" block>
+      Accent button
+    </app-button>
+    <app-button kind="error" @click="clickEvent('Error button')" block>Error button</app-button>
+    <app-button kind="info" @click="clickEvent('Info button')" block>Info button</app-button>
   </div>
+
   <div class="app-components input">
     <AppInput v-model="inputText" placeholder="Enter a text">
       <template #label>
@@ -41,13 +50,12 @@ const clickEvent = (text: string) => (textComponent.value = text);
 </template>
 
 <style scoped>
-.app-components.buttons {
-  display: flex;
-  gap: 20px;
+.app-components {
   margin-bottom: 8px;
 }
 
-.app-components.simple-text {
-  margin-bottom: 4px;
+.app-components.buttons {
+  display: flex;
+  gap: 20px;
 }
 </style>

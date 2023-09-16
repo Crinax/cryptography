@@ -45,7 +45,6 @@ const click = (e: MouseEvent) => (!props.block ? emit('click', e) : void 0);
 
 <style scoped lang="scss">
 .app-button {
-  width: max-content;
   padding: 8px 12px;
   border-radius: 8px;
   background-color: var(--color__primary);
