@@ -11,7 +11,11 @@ const clickEvent = (text: string) => (textComponent.value = text);
 
 <template>
   <div class="app-components simple-text">
-    <AppText>Default text: {{ textComponent }}</AppText>
+    <AppText kind="primary">Default text: {{ textComponent }}</AppText>
+    <AppText kind="success">Success text: {{ textComponent }}</AppText>
+    <AppText kind="accent">Accent text: {{ textComponent }}</AppText>
+    <AppText kind="error">Error text: {{ textComponent }}</AppText>
+    <AppText kind="info">Info text: {{ textComponent }}</AppText>
   </div>
   <div class="app-components buttons">
     <AppButton kind="primary" @click="clickEvent('Primary button')">Primary button</AppButton>
