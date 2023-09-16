@@ -12,8 +12,8 @@ const router = createRouter({
       path: '/components',
       name: 'components',
       component: () => import('@/views/ComponentView.vue'),
-      beforeEnter: () => import.meta.env.DEV
-    }
+      beforeEnter: () => import.meta.env.DEV,
+    },
   ],
 });
 

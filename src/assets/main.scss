@@ -1,9 +1,9 @@
-
 body {
   background-color: #1f2125;
 }
 
-button, [role="button"] {
+button,
+[role='button'] {
   cursor: pointer;
 }
 
@@ -12,8 +12,9 @@ button, [role="button"] {
   --color__success: #006907;
   --color__error: #891107;
   --color__info: #226689;
-  --color__accent: #5034a2;
+  --color__accent: #5b38bf;
   --text-color: #cecece;
 
   color: var(--text-color);
+  box-sizing: border-box;
 }

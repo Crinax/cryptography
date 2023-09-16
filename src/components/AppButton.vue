@@ -3,19 +3,25 @@ import { computed } from 'vue';
 
 export interface AppButtonProps {
   kind?: 'primary' | 'success' | 'accent' | 'error' | 'info';
+  block?: boolean;
 }
 
 export interface AppButtonSlots {
-  icon?(): any,
+  icon?(): any;
 }
 
-const props = withDefaults(defineProps<AppButtonProps>(), { kind: 'primary' });
+const props = withDefaults(defineProps<AppButtonProps>(), {
+  kind: 'primary',
+  block: false,
+});
+
 const buttonClasses = computed(() => {
+  const blockClass = props.block ? ['app-button__block'] : [];
   if (props.kind === 'primary') {
-    return ['app-button'];
+    return ['app-button', ...blockClass];
   }
 
-  return ['app-button', `app-button__${props.kind}`];
+  return ['app-button', `app-button__${props.kind}`, ...blockClass];
 });
 const slots = defineSlots<AppButtonSlots>();
 </script>
@@ -41,15 +47,15 @@ const slots = defineSlots<AppButtonSlots>();
   display: flex;
   gap: 4px;
   font-size: 16px;
-  transition: .1s;
+  transition: 0.1s;
 
   &-icon {
-    width: 12px;
-    height: 12px;
+    max-width: 12px;
+    max-height: 12px;
   }
 
   &:active {
-    box-shadow: 0px 0px 0px 0px #00000075
+    box-shadow: 0px 0px 0px 0px #00000075;
   }
 
   &:hover {
@@ -70,6 +76,16 @@ const slots = defineSlots<AppButtonSlots>();
 
   &__info {
     background-color: var(--color__info);
+  }
+
+  &__block {
+    filter: brightness(80%);
+    box-shadow: none;
+    cursor: not-allowed;
+
+    &:hover {
+      filter: brightness(80%);
+    }
   }
 }
 </style>
