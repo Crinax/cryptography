@@ -1,7 +1,7 @@
 @import 'mixins';
 
 body {
-  background-color: #1f2125;
+  background-color: var(--color__background);
 }
 
 button,
@@ -10,9 +10,11 @@ button,
 }
 
 * {
+  --color__background: #1f2125;
   --color__primary: #2d2f37;
   --color__selection: #2d2f37df;
   --color__input: #18191d;
+  --color__modal-fog: #10121785;
   --color__success: #006907;
   --color__error: #891107;
   --color__info: #226689;

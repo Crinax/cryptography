@@ -3,10 +3,16 @@ import { ref } from 'vue';
 import AppButton from '@/components/AppButton.vue';
 import AppText from '@/components/AppText.vue';
 import AppInput from '@/components/AppInput.vue';
+import AppModal from '@/components/AppModal.vue';
 
 const textComponent = ref('');
 const inputText = ref('');
+const modalStatus = ref(false);
+const animatedModalStatus = ref(false);
 const clickEvent = (text: string) => (textComponent.value = text);
+const openModal = () => (modalStatus.value = true);
+const closeModal = () => (modalStatus.value = false);
+const openAnimatedModal = () => (animatedModalStatus.value = true);
 </script>
 
 <template>
@@ -47,6 +53,15 @@ const clickEvent = (text: string) => (textComponent.value = text);
       </template>
     </app-input>
   </div>
+
+  <div class="app-components modal">
+    <app-button @click="openModal">Open default modal</app-button>
+    <app-button @click="openAnimatedModal">Open animated modal</app-button>
+  </div>
+
+  <app-modal v-if="modalStatus" @close="closeModal">
+    <app-text>This is default modal</app-text>
+  </app-modal>
 </template>
 
 <style scoped>
@@ -54,7 +69,8 @@ const clickEvent = (text: string) => (textComponent.value = text);
   margin-bottom: 8px;
 }
 
-.app-components.buttons {
+.app-components.buttons,
+.app-components.modal {
   display: flex;
   gap: 20px;
 }

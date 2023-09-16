@@ -3,3 +3,8 @@
   -moz-user-select: $value;
   -webkit-user-select: $value;
 }
+
+@mixin backdrop-filter($value) {
+  backdrop-filter: $value;
+  -webkit-backdrop-filter: $value;
+}
