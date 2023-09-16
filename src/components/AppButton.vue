@@ -41,7 +41,7 @@ const slots = defineSlots<AppButtonSlots>();
   display: flex;
   gap: 4px;
   font-size: 16px;
-  transition: .2s;
+  transition: .1s;
 
   &-icon {
     width: 12px;
