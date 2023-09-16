@@ -12,7 +12,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest'
   },
+  plugins: ['prettier'],
   rules: {
+    'prettier/prettier': 'error',
     semi: [2, 'always'],
     quotes: ['error', 'single']
   }
