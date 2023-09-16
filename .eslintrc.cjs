@@ -17,5 +17,6 @@ module.exports = {
     'prettier/prettier': 'error',
     semi: [2, 'always'],
     quotes: ['error', 'single'],
+    'vue/component-name-in-template-casing': ['error', 'kebab-case'],
   },
 };

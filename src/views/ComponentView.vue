@@ -41,11 +41,11 @@ const clickEvent = (text: string) => (textComponent.value = text);
   </div>
 
   <div class="app-components input">
-    <AppInput v-model="inputText" placeholder="Enter a text">
+    <app-input v-model="inputText" placeholder="Enter a text">
       <template #label>
         {{ inputText }}
       </template>
-    </AppInput>
+    </app-input>
   </div>
 </template>
 
