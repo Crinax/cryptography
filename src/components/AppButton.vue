@@ -20,9 +20,9 @@ const props = withDefaults(defineProps<AppButtonProps>(), {
 });
 
 const buttonClasses = computed(() => ({
-    'app-button': true,
-    [`app-button__${props.kind}`]: props.kind !== 'primary',
-    'app-button__block': props.block,
+  'app-button': true,
+  [`app-button__${props.kind}`]: props.kind !== 'primary',
+  'app-button__block': props.block,
 }));
 
 const slots = defineSlots<AppButtonSlots>();
