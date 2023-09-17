@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1.4.0",
     "pinia": "^2.1.6",
     "sass": "^1.67.0",
     "v3-click-outside": "^1.1.0",

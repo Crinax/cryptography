@@ -10,6 +10,8 @@ export interface AppInputModifiers {
   lower?: boolean;
   capitalize?: boolean;
   trim?: boolean;
+  uniqueSymbols?: boolean;
+  number?: boolean;
 }
 
 export interface AppInputProps {
@@ -46,6 +48,12 @@ const updateModelValue = (event: Event) => {
 
   inputText.value = target.value;
 
+  if (props.modelModifiers.number) {
+    inputText.value = Number.isNaN(Number(target.value)) ? props.modelValue ?? '0' : target.value;
+
+    return emit('update:modelValue', inputText.value);
+  }
+
   if (props.modelModifiers.trim) {
     inputText.value = inputText.value.trim();
   }
@@ -60,6 +68,10 @@ const updateModelValue = (event: Event) => {
 
   if (props.modelModifiers.capitalize) {
     inputText.value = inputText.value[0].toUpperCase() + inputText.value.slice(1);
+  }
+
+  if (props.modelModifiers.uniqueSymbols) {
+    inputText.value = Array.from(new Set(inputText.value.split(''))).join('');
   }
 
   emit('update:modelValue', inputText.value);

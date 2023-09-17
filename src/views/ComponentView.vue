@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import AppButton from '@/components/AppButton.vue';
 import AppText from '@/components/AppText.vue';
 import AppInput from '@/components/AppInput.vue';
@@ -10,6 +11,7 @@ const textComponent = ref('');
 const inputText = ref('');
 const modalStatus = ref(false);
 const modalKind = ref('primary');
+const router = useRouter();
 
 const modalKinds = computed(() => [
   { key: 'primary', value: 'primary', default: true, blocked: false },
@@ -68,6 +70,8 @@ const closeModal = () => (modalStatus.value = false);
     <app-select :list="modalKinds" @select="selectModalKind" class="modal-select"></app-select>
     <app-button @click="openModal">Open {{ modalKind }} modal</app-button>
   </div>
+
+  <app-button @click="router.push({ name: 'home' })">Return to home</app-button>
 
   <app-modal v-if="modalStatus" :kind="modalKind" show-cross @close="closeModal">
     <app-text>This is {{ modalKind }} modal</app-text>

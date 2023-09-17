@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import('@/views/ComponentView.vue'),
       beforeEnter: () => import.meta.env.DEV,
     },
+    {
+      path: '/cesar',
+      name: 'cesarCipher',
+      component: () => import('@/views/CesarCipherView.vue'),
+    },
   ],
 });
 
