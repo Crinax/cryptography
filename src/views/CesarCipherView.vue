@@ -11,12 +11,8 @@ const shift = ref('3');
 const result = ref('');
 
 const formErrorResult = computed(() => {
-  if (Number(shift.value) < 0) {
-    return 'Shift should be a positive number';
-  }
-
   if (alphabet.value.length < 3) {
-    return 'Alphabet should have 3 symbols or more';
+    return 'Alphabet should have 3 or more characters';
   }
 
   if (message.value.split('').some((item) => !alphabet.value.includes(item))) {
@@ -26,11 +22,19 @@ const formErrorResult = computed(() => {
   return '';
 });
 
-watch(formErrorResult, async (value) => {
-  if (value.length === 0) {
-    result.value = await invoke('');
+const sendInvoke = async () => {
+  if (formErrorResult.value.length === 0) {
+    result.value = await invoke('cesar_solve', {
+      alphabet: alphabet.value,
+      message: message.value,
+      shift: Number(shift.value),
+    });
   }
-});
+};
+
+watch(message, sendInvoke);
+watch(shift, sendInvoke);
+watch(alphabet, sendInvoke);
 </script>
 
 <template>
@@ -67,7 +71,7 @@ watch(formErrorResult, async (value) => {
           {{ formErrorResult }}
         </app-text>
 
-        <app-text>{{ result }}</app-text>
+        <app-text v-else>{{ result }}</app-text>
       </div>
     </div>
   </div>
