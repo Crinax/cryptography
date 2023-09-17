@@ -1,18 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import AppButton from '@/components/AppButton.vue';
 import AppText from '@/components/AppText.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppModal from '@/components/AppModal.vue';
+import AppSelect from '@/components/AppSelect.vue';
 
 const textComponent = ref('');
 const inputText = ref('');
 const modalStatus = ref(false);
-const animatedModalStatus = ref(false);
+const modalKind = ref('primary');
+
+const modalKinds = computed(() => [
+  { key: 'primary', value: 'primary', default: true, blocked: false },
+  { key: 'success', value: 'success', default: false, blocked: false },
+  { key: 'accent', value: 'accent', default: false, blocked: false },
+  { key: 'error', value: 'error', default: false, blocked: false },
+  { key: 'info', value: 'info', default: false, blocked: false },
+]);
+
+const selectModalKind = (key: string) => (modalKind.value = key);
 const clickEvent = (text: string) => (textComponent.value = text);
 const openModal = () => (modalStatus.value = true);
 const closeModal = () => (modalStatus.value = false);
-const openAnimatedModal = () => (animatedModalStatus.value = true);
 </script>
 
 <template>
@@ -55,12 +65,12 @@ const openAnimatedModal = () => (animatedModalStatus.value = true);
   </div>
 
   <div class="app-components modal">
-    <app-button @click="openModal">Open default modal</app-button>
-    <app-button @click="openAnimatedModal">Open animated modal</app-button>
+    <app-select :list="modalKinds" @select="selectModalKind" class="modal-select"></app-select>
+    <app-button @click="openModal">Open {{ modalKind }} modal</app-button>
   </div>
 
-  <app-modal v-if="modalStatus" @close="closeModal">
-    <app-text>This is default modal</app-text>
+  <app-modal v-if="modalStatus" :kind="modalKind" show-cross @close="closeModal">
+    <app-text>This is {{ modalKind }} modal</app-text>
   </app-modal>
 </template>
 
@@ -73,5 +83,9 @@ const openAnimatedModal = () => (animatedModalStatus.value = true);
 .app-components.modal {
   display: flex;
   gap: 20px;
+}
+
+.modal-select {
+  width: 150px;
 }
 </style>

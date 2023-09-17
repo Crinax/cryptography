@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import AppCrossIcon from '@/components/icons/AppCrossIcon.vue';
+import type { ColorKinds } from '@/components/basic-types';
 
 export interface AppModalSlots {
   default?(): any;
@@ -10,7 +12,8 @@ export interface AppModalEmits {
 }
 
 export interface AppModalProps {
-  kind?: 'primary' | 'success' | 'accent' | 'error' | 'info';
+  kind?: ColorKinds | string;
+  showCross?: boolean;
 }
 
 defineSlots<AppModalSlots>();
@@ -29,7 +32,17 @@ const closeModal = () => emit('close');
   <Teleport to="body">
     <div class="app-modal" @click.self="closeModal">
       <div :class="modalClasses">
-        <slot />
+        <div class="app-modal-window__body">
+          <slot />
+        </div>
+        <div
+          v-if="props.showCross"
+          class="app-modal-window__cross"
+          role="button"
+          @click="closeModal"
+        >
+          <app-cross-icon fill="#fff5" />
+        </div>
       </div>
     </div>
   </Teleport>
@@ -53,10 +66,41 @@ const closeModal = () => emit('close');
   @include backdrop-filter(blur(5px));
 
   &-window {
+    box-shadow: 0px 0px 12px 0px #0003;
+    display: flex;
+    gap: 12px;
     padding: 12px 16px;
     border-radius: 8px;
     background-color: var(--color__background);
     border: 2px solid #fff1;
+
+    &__cross {
+      background-color: var(--color__background);
+      width: 24px;
+      height: 24px;
+      border-radius: 100%;
+      align-self: flex-end;
+
+      &:active {
+        filter: brightness(150%);
+      }
+    }
+
+    &__success {
+      border-color: #00690755;
+    }
+
+    &__accent {
+      border-color: #5b38bf55;
+    }
+
+    &__info {
+      border-color: #22668955;
+    }
+
+    &__error {
+      border-color: #89110755;
+    }
   }
 }
 </style>

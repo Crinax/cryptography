@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import type { ColorKinds } from '@/components/basic-types';
 
 export interface AppTextSlots {
   default?(): string;
 }
 
 export interface AppTextProps {
-  kind?: 'primary' | 'success' | 'accent' | 'error' | 'info';
+  kind?: ColorKinds | string;
 }
 
 const props = withDefaults(defineProps<AppTextProps>(), {

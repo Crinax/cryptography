@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import type { ColorKinds } from '@/components/basic-types';
 
 export interface AppButtonProps {
-  kind?: 'primary' | 'success' | 'accent' | 'error' | 'info';
+  kind?: ColorKinds | string;
   block?: boolean;
 }
 
@@ -50,6 +51,7 @@ const click = (e: MouseEvent) => (!props.block ? emit('click', e) : void 0);
   background-color: var(--color__primary);
   box-shadow: 0px 0px 6px 0px #00000075;
   display: flex;
+  align-items: center;
   gap: 4px;
   font-size: 16px;
   transition: 0.1s;
