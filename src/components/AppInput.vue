@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onUpdated, ref } from 'vue';
 
 export interface AppInputSlots {
   label?(): any;
@@ -76,6 +76,12 @@ const updateModelValue = (event: Event) => {
 
   emit('update:modelValue', inputText.value);
 };
+
+onUpdated(() => {
+  if (props.modelValue) {
+    inputText.value = props.modelValue;
+  }
+});
 </script>
 
 <template>

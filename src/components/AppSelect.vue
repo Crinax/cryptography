@@ -113,6 +113,7 @@ const selectElement = (key: string) => {
     flex-direction: column;
     padding: 0;
     gap: 0px;
+    z-index: 20;
     @extend .app-select-element;
 
     &__element {
