@@ -5,8 +5,8 @@ import AppArrowIcon from '@/components/icons/AppArrowIcon.vue';
 export interface AppSelectList {
   key: string;
   value: string;
-  default: boolean;
-  blocked: boolean;
+  default?: boolean;
+  blocked?: boolean;
 }
 
 export interface AppSelectProps {
