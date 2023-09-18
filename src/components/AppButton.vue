@@ -57,6 +57,10 @@ const click = (e: MouseEvent) => (!props.block ? emit('click', e) : void 0);
   font-size: 16px;
   transition: 0.1s;
 
+  &-text {
+    margin: auto;
+  }
+
   &-icon {
     max-width: 12px;
     max-height: 12px;

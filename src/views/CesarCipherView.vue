@@ -141,7 +141,7 @@ watch(alphabet, sendInvoke);
           {{ formErrorResult }}
         </app-text>
 
-        <app-input class="result-input" v-model="result" />
+        <app-input class="result-input" v-model="result" disabled />
       </div>
     </div>
   </div>

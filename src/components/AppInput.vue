@@ -18,6 +18,7 @@ export interface AppInputProps {
   placeholder?: string;
   modelValue?: string;
   modelModifiers?: AppInputModifiers;
+  disabled?: boolean;
 }
 
 export interface AppInputEmits {
@@ -82,6 +83,8 @@ onUpdated(() => {
     inputText.value = props.modelValue;
   }
 });
+
+const conditionalClasses = computed(() => ({ 'app-input-text-field-blocked': props.disabled }));
 </script>
 
 <template>
@@ -90,12 +93,13 @@ onUpdated(() => {
       <slot name="label" />
     </label>
 
-    <div class="app-input-text-field" @click="focusOnInput">
+    <div class="app-input-text-field" :class="conditionalClasses" @click="focusOnInput">
       <div class="app-input-text-field__wrapper">
         <p v-show="showPlaceholder" class="app-input-text-field__placeholder">
           {{ props.placeholder }}
         </p>
         <input
+          :disabled="props.disabled"
           ref="inputElement"
           class="app-input-text-field__text"
           :value="inputText"
@@ -119,6 +123,10 @@ onUpdated(() => {
     border-radius: 8px;
     border: 2px solid #eee2;
     cursor: text;
+
+    &-blocked {
+      cursor: default;
+    }
 
     &__wrapper {
       position: relative;

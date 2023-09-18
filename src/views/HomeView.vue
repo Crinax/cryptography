@@ -7,8 +7,9 @@ const appSettings = useAppSettinsStore();
 
 <template>
   <main class="app-main">
-    <router-link v-if="appSettings.isDevMode" :to="{ name: 'components' }">Компоненты</router-link>
-    <router-link :to="{ name: 'cesarCipher' }">Шифр Цезаря</router-link>
+    <router-link v-if="appSettings.isDevMode" :to="{ name: 'components' }">Components</router-link>
+    <router-link :to="{ name: 'cesarCipher' }">Cesar's cipher</router-link>
+    <router-link :to="{ name: 'cesarCipherDecryption' }">Cesar's cipher decryption</router-link>
   </main>
 </template>
 
