@@ -17,7 +17,7 @@ fn cesar_solve(alphabet: &str, message: &str, shift: i64) -> String {
                 .try_into()
                 .unwrap();
 
-            let complete_shift: usize = modular_shift(pos + shift, alphabet.len().try_into().unwrap())
+            let complete_shift: usize = modular_shift(pos + shift, alphabet.chars().count().try_into().unwrap())
                 .try_into()
                 .unwrap();
 
