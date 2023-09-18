@@ -13,7 +13,7 @@ const decryptionResult = ref('');
 const decryptionRunning = ref(false);
 const decryptionKinds: AppSelectList[] = [
   { key: 'brute_force', value: 'Brute force decryption', default: true },
-  { key: 'frequency_anlysis', value: 'Frequency analysis' },
+  { key: 'frequency_analysis', value: 'Frequency analysis' },
 ];
 
 const selectDecryptionKind = (key: string) => (decryptionKind.value = key);
@@ -27,12 +27,12 @@ const decryptMessage = async () => {
 </script>
 
 <template>
-  <div class="app-cesar-cipher-decription">
-    <app-header>Cesar's cipher decription</app-header>
-    <app-input v-model="encryptedText" class="app-cesar-cipher-decription__encrypted-text">
+  <div class="app-cesar-cipher-decryption">
+    <app-header>Cesar's cipher decryption</app-header>
+    <app-input v-model="encryptedText" class="app-cesar-cipher-decryption__encrypted-text">
       <template #label>Enter the encrypted text</template>
     </app-input>
-    <div class="app-cesar-cipher-decription__select-decryption">
+    <div class="app-cesar-cipher-decryption__select-decryption">
       <app-select
         class="select-decryption__select"
         :list="decryptionKinds"
@@ -46,11 +46,18 @@ const decryptMessage = async () => {
         Decrypt message
       </app-button>
     </div>
+    <app-input
+      v-model="decryptionResult"
+      class="app-cesar-cipher-decryption__encrypted-text"
+      disabled
+    >
+      <template #label>Decryption result</template>
+    </app-input>
   </div>
 </template>
 
 <style scoped lang="scss">
-.app-cesar-cipher-decription {
+.app-cesar-cipher-decryption {
   display: flex;
   flex-direction: column;
   gap: 8px;

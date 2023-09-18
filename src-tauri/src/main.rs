@@ -1,34 +1,34 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-fn modular_shift(value: i64, module: i64) -> u64 {
-    // Always positive
-    ((module + (value % module)) % module) as u64
-}
+mod cipher;
+mod math;
+mod hack;
+mod alphabets;
+
+use alphabets::{RussianAlphabet, Alphabet};
+use cipher::cesar::Cesar;
+use hack::frequency::FrequencyAnalysis;
 
 #[tauri::command]
 fn cesar_solve(alphabet: &str, message: &str, shift: i64) -> String {
-    // We garant on frontend that values exactly exists
-    message.chars().into_iter()
-        .map(|c| {
-            let pos: i64 = alphabet.chars()
-                .position(|a| a == c)
-                .unwrap()
-                .try_into()
-                .unwrap();
+    let cesar = Cesar::new(message, alphabet);
 
-            let complete_shift: usize = modular_shift(pos + shift, alphabet.chars().count().try_into().unwrap())
-                .try_into()
-                .unwrap();
+    cesar.encrypt(shift)
+}
 
-            alphabet.chars().nth(complete_shift).unwrap()
-        })
-        .collect()
+#[tauri::command]
+fn frequency_analysis(message: &str) -> String {
+    let binding = RussianAlphabet::get_alphabet();
+    let cesar = Cesar::new(message, binding.as_str());
+    let freq_analysis = FrequencyAnalysis::new(&cesar);
+
+    freq_analysis.decrypt()
 }
 
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![cesar_solve])
+    .invoke_handler(tauri::generate_handler![cesar_solve, frequency_analysis])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }
