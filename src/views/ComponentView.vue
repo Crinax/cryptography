@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+
 import AppButton from '@/components/AppButton.vue';
 import AppText from '@/components/AppText.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppModal from '@/components/AppModal.vue';
 import AppSelect from '@/components/AppSelect.vue';
+import AppHeader from '@/components/AppHeader.vue';
 
 const textComponent = ref('');
 const inputText = ref('');
@@ -28,6 +30,13 @@ const closeModal = () => (modalStatus.value = false);
 </script>
 
 <template>
+  <app-header level="1">Header level 1</app-header>
+  <app-header level="2">Header level 2</app-header>
+  <app-header level="3">Header level 3</app-header>
+  <app-header level="4">Header level 4</app-header>
+  <app-header level="5">Header level 5</app-header>
+  <app-header level="6">Header level 6</app-header>
+
   <div class="app-components simple-text">
     <app-text kind="primary">Default text: {{ textComponent }}</app-text>
     <app-text kind="success">Success text: {{ textComponent }}</app-text>

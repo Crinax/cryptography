@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue';
 import { invoke } from '@tauri-apps/api';
 
 import AppText from '@/components/AppText.vue';
+import AppHeader from '@/components/AppHeader.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppSelect from '@/components/AppSelect.vue';
 import AppButton from '@/components/AppButton.vue';
@@ -112,7 +113,7 @@ watch(result, sendInvokeDecrypt);
 <template>
   <div class="app-cesar-cipher">
     <div class="app-cesar-cipher__header">
-      <app-text>Cesar's cipher</app-text>
+      <app-header level="1">Cesar's cipher</app-header>
     </div>
 
     <div class="app-cesar-cipher-manipulate">
