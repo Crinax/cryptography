@@ -54,17 +54,6 @@ const sendInvoke = async () => {
   }
 };
 
-const sendInvokeDecrypt = async () => {
-  if (formErrorResult.value.length === 0) {
-    console.log('sended');
-    message.value = await invoke('cesar_decrypt', {
-      alphabet: alphabet.value,
-      message: result.value,
-      shift: Number(shift.value),
-    });
-  }
-};
-
 const selectAlphabet = (key: string) => (alphabetType.value = key);
 
 const useAlphabet = () => {
@@ -107,13 +96,12 @@ const useAlphabet = () => {
 watch(message, sendInvoke);
 watch(shift, sendInvoke);
 watch(alphabet, sendInvoke);
-watch(result, sendInvokeDecrypt);
 </script>
 
 <template>
   <div class="app-cesar-cipher">
     <div class="app-cesar-cipher__header">
-      <app-header level="1">Cesar's cipher</app-header>
+      <app-header level="1">Cesar's cipher encryption / decryption</app-header>
     </div>
 
     <div class="app-cesar-cipher-manipulate">
@@ -153,7 +141,7 @@ watch(result, sendInvokeDecrypt);
           {{ formErrorResult }}
         </app-text>
 
-        <app-input v-model="result" />
+        <app-input class="result-input" v-model="result" />
       </div>
     </div>
   </div>
@@ -180,6 +168,17 @@ watch(result, sendInvokeDecrypt);
 
     &__form {
       @extend .app-cesar-cipher;
+    }
+
+    &__result {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+
+      .result-input {
+        width: 100%;
+      }
     }
   }
 }

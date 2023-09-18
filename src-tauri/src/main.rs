@@ -26,14 +26,9 @@ fn cesar_solve(alphabet: &str, message: &str, shift: i64) -> String {
         .collect()
 }
 
-#[tauri::command]
-fn cesar_decrypt(alphabet: &str, message: &str, shift: i64) -> String {
-    cesar_solve(alphabet, message, -shift)
-}
-
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![cesar_solve, cesar_decrypt])
+    .invoke_handler(tauri::generate_handler![cesar_solve])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }
