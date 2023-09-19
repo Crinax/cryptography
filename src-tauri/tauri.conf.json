@@ -11,7 +11,17 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "window": {
+        "all": false,
+        "close": true,
+        "hide": true,
+        "show": true,
+        "maximize": false,
+        "minimize": true,
+        "unmaximize": false,
+        "unminimize": true,
+        "startDragging": true
+      }
     },
     "bundle": {
       "active": true,
@@ -56,9 +66,11 @@
       {
         "fullscreen": false,
         "height": 600,
-        "resizable": true,
+        "resizable": false,
         "title": "Криптография",
-        "width": 800
+        "width": 800,
+        "decorations": false,
+        "transparent": true
       }
     ]
   }

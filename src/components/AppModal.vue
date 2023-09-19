@@ -29,7 +29,7 @@ const closeModal = () => emit('close');
 </script>
 
 <template>
-  <Teleport to="body">
+  <Teleport to="#app-root">
     <div class="app-modal" @click.self="closeModal">
       <div :class="modalClasses">
         <div class="app-modal-window__body">
