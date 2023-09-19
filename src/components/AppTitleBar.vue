@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { appWindow } from '@tauri-apps/api/window';
 import { useRouter, useRoute } from 'vue-router';
 import { computed } from 'vue';
 import AppCrossIcon from './icons/AppCrossIcon.vue';
@@ -9,6 +10,8 @@ const router = useRouter();
 const route = useRoute();
 
 const isHome = computed(() => route.name === 'home');
+
+const closeWindow = () => appWindow.close();
 </script>
 
 <template>
@@ -25,7 +28,7 @@ const isHome = computed(() => route.name === 'home');
     <app-text data-tauri-drag-region class="titlebar-header">
       {{ route.meta.title || 'Cryptography' }}
     </app-text>
-    <app-cross-icon class="titlebar-button" fill="#fff5" role="button" />
+    <app-cross-icon class="titlebar-button" fill="#fff5" role="button" @click="closeWindow" />
   </div>
 </template>
 
