@@ -11,10 +11,10 @@ use cipher::cesar::Cesar;
 use hack::frequency::FrequencyAnalysis;
 
 #[tauri::command]
-fn cesar_solve(alphabet: &str, message: &str, shift: i64) -> String {
+fn cesar_solve(alphabet: &str, message: &str, shift: i64, ignore: bool) -> String {
     let cesar = Cesar::new(message, alphabet);
 
-    cesar.encrypt(shift, false)
+    cesar.encrypt(shift, ignore)
 }
 
 #[tauri::command]

@@ -13,6 +13,7 @@ const alphabet = ref('');
 const message = ref('');
 const shift = ref('3');
 const result = ref('');
+const ignoreUnexistingSymbols = ref(false);
 const alphabetType = ref('english-lower');
 
 const alphabets: AppSelectList[] = [
@@ -29,6 +30,10 @@ const alphabets: AppSelectList[] = [
     value: 'Russian and English alphabets (both lower and upper cases)',
   },
 ];
+const ignoreSymbols: AppSelectList[] = [
+  { key: 'not-ignore', value: 'Do not ignore non-existent characters', default: true },
+  { key: 'ignore', value: 'Ignore non-existent characters' },
+];
 const russianAlphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
 const englishAlphabet = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -37,7 +42,10 @@ const formErrorResult = computed(() => {
     return 'Alphabet should have 3 or more characters';
   }
 
-  if (message.value.split('').some((item) => !alphabet.value.includes(item))) {
+  if (
+    !ignoreUnexistingSymbols.value &&
+    message.value.split('').some((item) => !alphabet.value.includes(item))
+  ) {
     return 'Message containse symbols that alphabet have not';
   }
 
@@ -50,11 +58,13 @@ const sendInvoke = async () => {
       alphabet: alphabet.value,
       message: message.value,
       shift: Number(shift.value),
+      ignore: ignoreUnexistingSymbols.value,
     });
   }
 };
 
 const selectAlphabet = (key: string) => (alphabetType.value = key);
+const selectIgnoring = (key: string) => (ignoreUnexistingSymbols.value = key === 'ignore');
 
 const useAlphabet = () => {
   let alphabetForUsage = null;
@@ -113,6 +123,12 @@ watch(alphabet, sendInvoke);
       <app-button @click="useAlphabet">Use alphabet</app-button>
     </div>
 
+    <app-select
+      :list="ignoreSymbols"
+      @select="selectIgnoring"
+      class="app-cesar-cipher-manipulate__select"
+    />
+
     <div class="app-cesar-cipher-content">
       <div class="app-cesar-cipher-content__form">
         <app-input v-model.uniqueSymbols="alphabet">
@@ -141,7 +157,7 @@ watch(alphabet, sendInvoke);
           {{ formErrorResult }}
         </app-text>
 
-        <app-input class="result-input" v-model="result" disabled />
+        <app-input class="result-input" v-model="result" />
       </div>
     </div>
   </div>

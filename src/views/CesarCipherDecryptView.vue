@@ -46,11 +46,7 @@ const decryptMessage = async () => {
         Decrypt message
       </app-button>
     </div>
-    <app-input
-      v-model="decryptionResult"
-      class="app-cesar-cipher-decryption__encrypted-text"
-      disabled
-    >
+    <app-input v-model="decryptionResult" class="app-cesar-cipher-decryption__encrypted-text">
       <template #label>Decryption result</template>
     </app-input>
   </div>
