@@ -14,7 +14,7 @@ use hack::frequency::FrequencyAnalysis;
 fn cesar_solve(alphabet: &str, message: &str, shift: i64) -> String {
     let cesar = Cesar::new(message, alphabet);
 
-    cesar.encrypt(shift)
+    cesar.encrypt(shift, false)
 }
 
 #[tauri::command]

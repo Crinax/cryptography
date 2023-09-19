@@ -20,16 +20,14 @@ impl<'a> FrequencyAnalysis<'a, Cesar<'a>, RussianAlphabet> {
         let alphabet = RussianAlphabet::get_alphabet();
         let alphabet_freq = RussianAlphabet::get_alphabet_frequency();
         let message = self.cipher.get_message();
-        let message_count_symbols = message
-            .chars()
+        let filtered_message = message.chars()
             .filter(|&c| {
                 let lower_case = c.to_lowercase().next().unwrap();
 
                 alphabet.contains(c) || alphabet.contains(lower_case)
-            })
-            .count() as f64;
-        let message_symbol_freq: HashMap<char, f64> = message
-            .chars()
+            });
+        let message_count_symbols = filtered_message.clone().count() as f64;
+        let message_symbol_freq: HashMap<char, f64> = filtered_message
             .map(|c| {
                 let counts = message.chars().filter(|cm| *cm == c).count() as f64;
 
@@ -51,6 +49,6 @@ impl<'a> FrequencyAnalysis<'a, Cesar<'a>, RussianAlphabet> {
 
         let shift = (nearest_position as i64) - (most_freq_pos as i64);
 
-        self.cipher.encrypt(shift)
+        self.cipher.encrypt(shift, true)
     }
 }
